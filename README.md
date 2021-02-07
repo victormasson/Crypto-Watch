@@ -7,4 +7,4 @@ First, run the development server:
 ```bash
 npm run dev
 ```
-Icons on [heroicons](https://heroicons.dev/
+Icons on [heroicons](https://heroicons.dev/)
