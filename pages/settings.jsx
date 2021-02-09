@@ -227,9 +227,9 @@ function DisplayCrypto({ display = 1, list, listSelected, searchElement, search,
 }
 
 async function LoadAllCrypto({ setListCrypto }) {
-  const res = await fetch(constructionNomicsApi(`currencies?key=${Key.TokenNomics}&attributes=id,name,logo_url`))
-  const resJson = await res.json()
-  const data = resJson.filter(l => l.logo_url !== '' || l.name !== '' || l.id !== '')
+  const url = `/api/crypto`
+  const res = await fetch(url)
+  const data = await res.json()
 
   setListCrypto(data)
 }

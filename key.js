@@ -1,3 +1,3 @@
 export const Key = {
-  TokenNomics: '',
+  TokenNomics: process.env.TOKEN_NOMICS,
 }

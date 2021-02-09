@@ -19,11 +19,13 @@ export default function Currency({
 
   useEffect(() => {
     const c = router.query.currency
+    console.log(router.query);
+    console.log('c' + c);
     if (c !== undefined) {
       setCurrency(c)
 
-      console.log(`router ${currency}`)
-      LoadCrypto({ currency, setCrypto })
+      console.log(`router ${c}`)
+      LoadCrypto({ currency: c, setCrypto })
     }
   }, [router])
 
@@ -49,9 +51,12 @@ export default function Currency({
 
 async function LoadCrypto({ setCrypto, currency }) {
   try {
-    const res = await fetch(constructionNomicsApi(`currencies?key=${Key.TokenNomics}&ids=${currency}&attributes=id,name,logo_url,description,reddit_url`))
+    const url = `/api/crypto?currency=${currency}`
+    console.log(url);
+    const res = await fetch(url)
     const data = await res.json()
-    const crypto = data?.[0]
+    console.log(data);
+    const crypto = data
 
     setCrypto(crypto)
   } catch (err) {

@@ -20,7 +20,7 @@ export default function Layout({ children, page }) {
           </Link>
         </h1>
         <div className="p-4">
-          <Image src="/main.jpg" alt="main-pic"
+          <Image src="/crypto.jpg" alt="main-pic"
             width="400"
             height="25"
             className="rounded-3xl object-cover"
@@ -31,7 +31,7 @@ export default function Layout({ children, page }) {
         {children}
       </main>
       <footer className="p-10">
-        <Image src="/main.jpg" alt="main-pic"
+        <Image src="/crypto.jpg" alt="main-pic"
           width="1000"
           height="30"
           className="rounded-3xl object-cover"
@@ -53,7 +53,7 @@ export default function Layout({ children, page }) {
           <li>
             <ul className="flex justify-around">
               <li>Made with</li>
-              <li>{Icons.Light}</li>
+              <li>{Icons.Lighting}</li>
               <li>by <A url="https://twitter.com/vicmassv" text="@vicmassv" type={Types.Link.a} into={false} /></li>
             </ul>
           </li>
