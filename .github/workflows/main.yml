@@ -27,7 +27,8 @@ jobs:
           node-version: 14.x
 
       - name: 🗝 Add Key
-        run: sed -i 's/\${process\.env\.TOKEN_NOMICS}/${{TOKEN_NOMICS}}/g' key.js
+        run: sed -i 's/\${process\.env\.TOKEN_NOMICS}/${{secrets.TOKEN_NOMICS}}/g' key.js
+
       - name: 🧰 Install dependencies
         run: npm ci
 
@@ -39,7 +40,7 @@ jobs:
         id: deploy-netlify
         uses: netlify/actions/cli@master
         env:
-          NETLIFY_AUTH_TOKEN: ${{ NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
           args: deploy -m 'v${{ steps.package-version.outputs.current-version}} ・ ${{ github.head_ref }}'
