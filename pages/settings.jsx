@@ -227,7 +227,7 @@ function DisplayCrypto({ display = 1, list, listSelected, searchElement, search,
 }
 
 async function LoadAllCrypto({ setListCrypto }) {
-  const url = `/api/crypto`
+  const url = `${ApiUrl}/api/crypto`
   const res = await fetch(url)
   const data = await res.json()
 
