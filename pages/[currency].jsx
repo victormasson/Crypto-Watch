@@ -19,12 +19,9 @@ export default function Currency({
 
   useEffect(() => {
     const c = router.query.currency
-    console.log(router.query);
-    console.log('c' + c);
     if (c !== undefined) {
       setCurrency(c)
 
-      console.log(`router ${c}`)
       LoadCrypto({ currency: c, setCrypto })
     }
   }, [router])
@@ -51,11 +48,10 @@ export default function Currency({
 
 async function LoadCrypto({ setCrypto, currency }) {
   try {
-    const url = `${ApiUrl}/api/crypto?currency=${currency}`
-    console.log(url);
+    const apiUrl = Constants.ApiUrl !== 'undefined' ? Constants.ApiUrl : ''
+    const url = `${apiUrl}/api/crypto?currency=${currency}`
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data);
     const crypto = data
 
     setCrypto(crypto)

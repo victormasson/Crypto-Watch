@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     res.status(400)
       .json({ msg: 'Error key' })
   }
-  console.log(req.query)
+
   try {
     if (req.query.currency) {
       const { currency } = req.query

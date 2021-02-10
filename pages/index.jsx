@@ -72,8 +72,8 @@ async function LoadAll({ setListCrypto }) {
   const list = listCryptoJson !== null ? listCrypto : [{ id: 'BTC' }, { id: 'ETH' }, { id: 'AAVE', }]
 
   const listCryptoRequest = list.map(l => l.id).join(',')
-  const url = `${ApiUrl}/api/crypto?currencies=${listCryptoRequest}`
-  console.log(url);
+  const apiUrl = process.env.CRYPTO_WATCH_API !== 'undefined' ? process.env.CRYPTO_WATCH_API : ''
+  const url = `${apiUrl}/api/crypto?currencies=${listCryptoRequest}`
   const res = await fetch(url)
   const data = await res.json()
   setListCrypto(data)
