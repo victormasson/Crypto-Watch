@@ -27,12 +27,17 @@ export default function Settings({
   const [selected, setSelected] = useState(initSelected)
   const [searchElement, setSearchElement] = useState(initSearchElement)
   const [displayNotification, setDisplayNotification] = useState(initDisplayNotification)
+  const [isLoading, setIsLoading] = useState(false)
 
   const namePage = '⚙'
   const title = constructionTitle(namePage)
 
   useEffect(() => {
+    setIsLoading(true)
     LoadAllCrypto({ setListCrypto })
+      .then(() => {
+        setIsLoading(false)
+      })
     LoadAll({ setSelected })
   }, [])
 
@@ -78,7 +83,12 @@ export default function Settings({
           <option value="id">id</option>
           <option value="name">name</option>
         </select>
-        <input className="flex-1 bg-blue-100 text-left align-middle px-2 py-1 rounded-lg" type="text" placeholder="search" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <input className="flex-1 bg-blue-100 text-left align-middle px-2 py-1 rounded-lg"
+          type="text"
+          placeholder="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          disabled={isLoading} />
       </div>
       <div>
         {search === '' ? '' : DisplayCrypto({ display: 1, list: fctGetCrypto(), listSelected: selected, searchElement, search, setSelected, setDisplayNotification })}
@@ -226,7 +236,19 @@ function DisplayCrypto({ display = 1, list, listSelected, searchElement, search,
   )
 }
 
-async function LoadAllCrypto({ setListCrypto }) {
+function LoadAllCrypto({ setListCrypto }) {
+  return new Promise((resolve, reject) => {
+    try {
+      name({ setListCrypto }).then(() => {
+        resolve()
+      })
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+async function name({ setListCrypto }) {
   const url = `${Constants.ApiUrl}/api/crypto`
   const res = await fetch(url)
   const data = await res.json()
