@@ -30,7 +30,7 @@ jobs:
         run: sed -i 's/\${process\.env\.TOKEN_NOMICS}/${{secrets.TOKEN_NOMICS}}/g' key.js
       
       - name: 🗝 Add API url
-        run: sed -i 's/\${\"\"}/${{secrets.API_URL}}/g' constants.js
+        run: sed -i 's/\${\"\"}/${{.netlify/functions/next_api_crypto}}/g' constants.js
 
       - name: 🧰 Install dependencies
         run: npm ci
