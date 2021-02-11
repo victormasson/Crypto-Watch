@@ -2,7 +2,6 @@ export const Constants = {
   NameSite: 'Crypto Watch',
   NomicsApi: 'https://api.nomics.com/v1/',
   ListCrypto: 'listCrypto',
-  ApiUrl: `${process.env.CRYPTO_WATCH_API}`,
   UiMode: {
     code: 'UI-mode',
     light: 'light',

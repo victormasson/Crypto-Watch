@@ -48,8 +48,7 @@ export default function Currency({
 
 async function LoadCrypto({ setCrypto, currency }) {
   try {
-    const apiUrl = Constants.ApiUrl !== 'undefined' ? Constants.ApiUrl : ''
-    const url = `${apiUrl}/api/crypto?currency=${currency}`
+    const url = `/api/crypto?currency=${currency}`
     const res = await fetch(url)
     const data = await res.json()
     const crypto = data
