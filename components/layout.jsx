@@ -19,23 +19,15 @@ export default function Layout({ children, page }) {
             {Constants.NameSite}
           </Link>
         </h1>
-        <div className="p-4">
-          <Image src="/crypto.jpg" alt="main-pic"
-            width="400"
-            height="25"
-            className="rounded-3xl object-cover"
-          />
+        <div className="p-4 flex justify-center">
+          <img src="/crypto.jpg" alt="crypto.jpg" className="rounded-3xl object-cover w-1/2 h-7" />
         </div>
       </header>
       <main className="pt-4 mx-20">
         {children}
       </main>
       <footer className="p-10">
-        <Image src="/crypto.jpg" alt="main-pic"
-          width="1000"
-          height="30"
-          className="rounded-3xl object-cover"
-        />
+        <img src="/crypto.jpg" alt="crypto.jpg" className="rounded-3xl object-cover w-full h-7" />
         <ul className="pt-10 pb-4 flex justify-around">
           <li>
             <ul className="flex justify-around">

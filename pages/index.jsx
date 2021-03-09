@@ -23,21 +23,21 @@ export default function Home({ res, initListCrypto = [] }) {
     <Layout page={title}>
       <ul className="flex justify-around py-10 flex-wrap">
         {!listCrypto ? '' : listCrypto.map((crypto, index) => (
-          <li key={index} className="hover:shadow-md pt-8 pb-8 border border-blue-100 rounded-3xl bd-blue-100 flex-1 flex-grow-1 mx-5 mb-5">
+          <li key={index} className="hover:shadow-md pt-8 pb-8 border border-blue-100 rounded-3xl bd-blue-100 flex-1 w-40 md:w-auto mx-5 mb-5">
             <Link href={`/${crypto.currency}`}>
               <a className="rounded-md text-center">
                 <div className="text-center">
-                  <img src={crypto.logo_url} alt={crypto.name} className="w-20 h-20 mx-auto mb-6" />
+                  <img src={crypto.logo_url} alt={crypto.name} className="w-24 h-24 mx-auto mb-6 rounded-full" />
                 </div>
                 <h2 className="text-2xl mb-6 uppercase tracking-wider">
                   {crypto.name}
                 </h2>
                 <h3 className="font-bold text-2xl mb-4">
-                  {parseFloat(crypto.price).toFixed(2)} USD
+                  {parseFloat(crypto.price).toFixed(2)} €
                 </h3>
-                {DisplayTrending(crypto['1d'])}
-                {DisplayTrending(crypto['30d'])}
-                {DisplayTrending(crypto['365d'])}
+                {DisplayTrending('1 day', crypto['1d'])}
+                {DisplayTrending('1 month', crypto['30d'])}
+                {DisplayTrending('1 year', crypto['365d'])}
               </a>
             </Link>
           </li>
@@ -47,21 +47,26 @@ export default function Home({ res, initListCrypto = [] }) {
   )
 }
 
-function DisplayTrending(data) {
+function DisplayTrending(text, data) {
   if (!data) {
     return
   }
-  return (<p>1 year :{" "}
-    <span className="font-bold">{
-      parseFloat(data.price_change_pct * 100).toFixed(2) + '%'
-    }</span>
-    {" "}
-    {
-      data.price_change_pct < 0 ? (
-        <span className="text-red-500">{Icons.TrendingDown}</span>
-      ) : (<span className="text-green-500">{Icons.TrendingUp}</span>)
-    }
-  </p>)
+  return (
+    <div className="flex sm:flex-raw flex-col items-center justify-center mt-1">
+      <div className="flex-1 text-right">{text}</div>
+      <div className="flex-1 font-bold">
+        {
+          parseFloat(data.price_change_pct * 100).toFixed(2) + '%'
+        }
+      </div>
+      <div className="flex-1">
+        {
+          data.price_change_pct < 0 ? (
+            <span className="text-red-500">{Icons.TrendingDown}</span>
+          ) : (<span className="text-green-500">{Icons.TrendingUp}</span>)
+        }
+      </div>
+    </div>)
 }
 
 async function LoadAll({ setListCrypto }) {

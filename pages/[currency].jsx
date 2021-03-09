@@ -36,7 +36,7 @@ export default function Currency({
           <h2 className="text-2xl mb-6 uppercase tracking-wider">
             {crypto.name}
           </h2>
-          <p>{crypto.description}</p>
+          <p className="md:px-12 xl:px-52">{crypto.description}</p>
           <p className="pt-5 text-blue-500">
             <A url={crypto.reddit_url} text="Reddit" into={false} />
           </p>
